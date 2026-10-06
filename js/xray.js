@@ -47,7 +47,7 @@
     gsap.set([pila, scan, hero, didascalie, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')], { clearProps: ANIM });
     gsap.set(corpo, { clearProps: ANIM + ',width,height,transformOrigin,--fl' });
     dots.forEach(d => { d.style.left = d.style.top = ''; });
-    ['--scan', '--ox', '--oy', '--ow', '--y0'].forEach(p => pila.style.removeProperty(p));
+    ['--scan', '--ox', '--oy', '--ow', '--y0', '--fx', '--fy', '--fw', '--fh'].forEach(p => pila.style.removeProperty(p));
     root.classList.remove('is-scroll', 'zona-aperta');
     corrente = null; scheda = false; stato = null; fermo = false;
     elenco.dataset.aperto = 'false';
@@ -71,13 +71,18 @@
       /* telefono: la master si allinea alla foto del ritratto facendo coincidere la testa con il teschio
          (stessa altezza della testa, stesso centro). Foto: object-fit cover, object-position 18% 50%. */
       const pr = pila.getBoundingClientRect(), sr = stage.getBoundingClientRect();
-      const k = Math.max(pr.width / FOTO.w, pr.height / FOTO.h), dw = FOTO.w * k, dh = FOTO.h * k;
-      const fx = (pr.width - dw) * .18, fy = (pr.height - dh) / 2;
+      /* il ritratto si ingrandisce quanto basta perché la radiografia, allineata alla testa, parta dal bordo alto:
+         così sopra non resta mai una fascia senza raggi X (né blu quando la foto sparisce) */
+      const r = TESTA.foto.y - TESTA.master.y * TESTA.foto.h * RAPP / TESTA.master.h;   /* quota della foto sopra la radiografia */
+      const dh = Math.max(pr.height, pr.width * FOTO.h / FOTO.w, pr.height / (1 - r)), dw = dh * FOTO.w / FOTO.h;
+      const fx = (pr.width - dw) * .18, fy = -r * dh;
+      pila.style.setProperty('--fx', fx + 'px'); pila.style.setProperty('--fy', fy + 'px');
+      pila.style.setProperty('--fw', dw + 'px'); pila.style.setProperty('--fh', dh + 'px');
       W = TESTA.foto.h * dh / TESTA.master.h;
       const lx = fx + TESTA.foto.x * dw - TESTA.master.x * W;        /* bordo sinistro della master, coordinate del riquadro */
-      const ly = fy + TESTA.foto.y * dh - TESTA.master.y * W * RAPP;
+      const ly = fy + TESTA.foto.y * dh - TESTA.master.y * W * RAPP;  /* = 0 */
       pila.style.setProperty('--ox', lx + 'px'); pila.style.setProperty('--oy', ly + 'px'); pila.style.setProperty('--ow', W + 'px');
-      pila.style.setProperty('--y0', Math.max(0, ly) + 'px');     /* la scansione parte dal bordo alto della radiografia: sopra resta la foto, niente fascia vuota */
+      pila.style.setProperty('--y0', Math.max(0, ly) + 'px');
       x0 = pr.left - sr.left + lx;
       y0 = pr.top - sr.top + ly;
     }

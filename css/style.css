@@ -794,3 +794,7 @@ body{background:var(--xray-bg)}
   .is-scroll .scan{z-index:2}
   .is-scroll .hero{z-index:3;bottom:calc(max(20px,env(safe-area-inset-bottom)) + (100lvh - 100svh))}
 }
+
+@media (max-width:900px){
+  .is-scroll .pila picture.pila__foto img{inset:auto;left:var(--fx,0px);top:var(--fy,0px);width:var(--fw,100%);height:var(--fh,100%);max-width:none;object-fit:fill}
+}
