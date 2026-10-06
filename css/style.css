@@ -806,3 +806,9 @@ body{background:var(--xray-bg)}
   .is-scroll .pila__foto{-webkit-mask-image:linear-gradient(to bottom,transparent 0,transparent var(--linea),#000 var(--linea));
                                 mask-image:linear-gradient(to bottom,transparent 0,transparent var(--linea),#000 var(--linea))}
 }
+
+/* telefono: lo stage è alto 100lvh, quindi tutto ciò che sta in fondo sale dello spazio della barra di Safari */
+@media (max-width:900px){
+  .vz__selettore{bottom:calc(max(24px,env(safe-area-inset-bottom)) + (100lvh - 100svh))}
+  .is-scroll .zona{bottom:calc(96px + (100lvh - 100svh));max-height:calc(100% - var(--barra-h) - 160px - (100lvh - 100svh))}
+}
