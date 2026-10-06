@@ -32,7 +32,9 @@
   const mm = matchMedia('(prefers-reduced-motion: no-preference)');
   const RAPP = 3972 / 3200;              /* altezza/larghezza della master (assets/xray-a.jpg) */
   const SCHELETRO_X = .205;              /* asse dello scheletro (frazione della larghezza della master) */
-  const RITAGLIO = { w: .45, y0: .065 };  /* telefono: parte della master mostrata nel riquadro del ritratto (CSS .pila__xray) */
+  const FOTO = { w: 1200, h: 1600 };     /* assets/hero.jpg, il ritratto del telefono */
+  /* centro e altezza della testa: nella foto (frazioni della foto) e nella master (x,y in frazioni, h in frazioni della larghezza) */
+  const TESTA = { foto: { x: .275, y: .5125, h: .219 }, master: { x: .225, y: .172, h: .146 } };
   const FINESTRA = { y0: .44, y1: .87 };  /* tratto di scheletro mostrato a corpo fermo (frazione dell'altezza della master) */
   let tl = null, ultimaMisura = '', stato = null, corrente = null, scheda = false;
 
@@ -45,7 +47,7 @@
     gsap.set([pila, scan, hero, didascalie, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')], { clearProps: ANIM });
     gsap.set(corpo, { clearProps: ANIM + ',width,height,transformOrigin,--fl' });
     dots.forEach(d => { d.style.left = d.style.top = ''; });
-    ['--scan', '--ox', '--oy', '--ow'].forEach(p => pila.style.removeProperty(p));
+    ['--scan', '--ox', '--oy', '--ow', '--y0'].forEach(p => pila.style.removeProperty(p));
     root.classList.remove('is-scroll', 'zona-aperta');
     corrente = null; scheda = false; stato = null; fermo = false;
     elenco.dataset.aperto = 'false';
@@ -66,17 +68,21 @@
       x0 = -(W - vw) * .18;
       y0 = -(W * 9 / 16 - vh) / 2;
     } else {
+      /* telefono: la master si allinea alla foto del ritratto facendo coincidere la testa con il teschio
+         (stessa altezza della testa, stesso centro). Foto: object-fit cover, object-position 18% 50%. */
       const pr = pila.getBoundingClientRect(), sr = stage.getBoundingClientRect();
-      W = pr.width / RITAGLIO.w;
-      x0 = pr.left - sr.left;
-      y0 = pr.top - sr.top - RITAGLIO.y0 * W * RAPP;
+      const k = Math.max(pr.width / FOTO.w, pr.height / FOTO.h), dw = FOTO.w * k, dh = FOTO.h * k;
+      const fx = (pr.width - dw) * .18, fy = (pr.height - dh) / 2;
+      W = TESTA.foto.h * dh / TESTA.master.h;
+      const lx = fx + TESTA.foto.x * dw - TESTA.master.x * W;        /* bordo sinistro della master, coordinate del riquadro */
+      const ly = fy + TESTA.foto.y * dh - TESTA.master.y * W * RAPP;
+      pila.style.setProperty('--ox', lx + 'px'); pila.style.setProperty('--oy', ly + 'px'); pila.style.setProperty('--ow', W + 'px');
+      pila.style.setProperty('--y0', Math.max(0, ly) + 'px');     /* la scansione parte dal bordo alto della radiografia: sopra resta la foto, niente fascia vuota */
+      x0 = pr.left - sr.left + lx;
+      y0 = pr.top - sr.top + ly;
     }
     const H = W * RAPP;
     const partenza = { x: x0, y: y0, scale: 1 };
-    /* desktop: la radiografia sovrapposta alla foto (dentro .pila) ha la stessa inquadratura del corpo a scala 1 */
-    if(!mobile){ pila.style.setProperty('--ox', x0 + 'px'); pila.style.setProperty('--oy', y0 + 'px'); pila.style.setProperty('--ow', W + 'px'); }
-    else ['--ox', '--oy', '--ow'].forEach(p => pila.style.removeProperty(p));
-
     const cx = vw / 2;
     const cy = mobile ? barra + vh * .31 / 2 + 8 : vh * .52;      /* dove cade la zona aperta */
     const span = mobile ? vw * .7 : vh * .46;                    /* quanto spazio occupa */
