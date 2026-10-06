@@ -181,6 +181,18 @@
     if(window.XRAY && window.XRAY.vaiAllaPrimaZona()) e.preventDefault();
   }));
 
+  /* ── domanda anonima: in bozza non invia nulla (serve il servizio che tiene l'email separata dalla domanda) ── */
+  const an = $('#anonima'), anEs = $('#anonimaEsito');
+  if(an && anEs) an.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const d = an.domanda, m = an.email, ok = an.consenso;
+    const mancano = [[d, !d.value.trim()], [m, !m.value.trim() || !m.checkValidity()], [ok, !ok.checked]];
+    mancano.forEach(([c, err]) => c.setAttribute('aria-invalid', String(err)));
+    const primo = mancano.find(([, err]) => err);
+    if(primo){ anEs.textContent = 'Scrivi la domanda, un’email valida e conferma l’informativa.'; primo[0].focus(); return; }
+    anEs.textContent = 'Bozza: l’invio non è ancora collegato, nessun dato è stato inviato.';
+  });
+
   /* ── modulo: in bozza non invia nulla ── */
   const f = $('#modulo'), esito = $('#esito');
   if(f && esito) f.addEventListener('submit', ev => {

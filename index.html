@@ -18,7 +18,7 @@
 </script>
 <link rel="preload" href="fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/hero.jpg" as="image">
-<link rel="stylesheet" href="css/style.css?v=94">
+<link rel="stylesheet" href="css/style.css?v=96">
 <link rel="icon" type="image/svg+xml" href="assets/logo-circolare.svg?v=3">
 <script>document.fonts&&document.fonts.load('400 1em "PP Neue Montreal"').then(function(f){if(f.length)document.documentElement.classList.add("font-pp")}).catch(function(){})</script>
 </head>
@@ -177,6 +177,19 @@
         <p class="quiz__senzajs">Scrivici cosa senti e ti orientiamo noi. <a href="#contatto">Vai ai contatti</a></p>
       </div>
     </div>
+    <form class="anonima" id="anonima" novalidate>
+      <div class="anonima__testa">
+        <h3>Preferisci fare una domanda in forma anonima?</h3>
+        <p>Il medico legge solo la domanda. L’email serve soltanto per recapitarti la risposta: non gli viene mostrata.</p>
+      </div>
+      <label for="a-domanda">La tua domanda</label>
+      <textarea id="a-domanda" name="domanda" rows="4" maxlength="600" required placeholder="Es. A che età è consigliato il primo controllo della prostata?"></textarea>
+      <label for="a-email">Email per ricevere la risposta</label>
+      <input id="a-email" name="email" type="email" autocomplete="email" required>
+      <label class="anonima__ok"><input type="checkbox" name="consenso" required> Ho letto l’informativa privacy e non ho inserito nome, cognome o dati che mi identificano.</label>
+      <button class="pillola pillola--primaria" type="submit">Invia la domanda</button>
+      <p class="modulo__esito" id="anonimaEsito" role="status" aria-live="polite"></p>
+    </form>
     <p class="avviso">Questo sito non fa diagnosi e non sostituisce la visita. In caso di dolore forte o improvviso, rivolgiti al pronto soccorso.</p>
   </div>
 </section>
@@ -205,25 +218,11 @@
       </div>
       <div class="card card--testo card--esp">
         <h3>Esperienze professionali</h3>
-        <ul class="elenco-cv">
-          <li><b>Dirigente medico specializzando, Presidio Ospedaliero «Moscati», Aversa</b><span>Vincitore di concorso pubblico. Attività clinica e chirurgica in ambito urologico.</span></li>
-          <li><b>Scuola di Specializzazione in Urologia</b><span>Università di Napoli «Federico II». Formazione clinica e chirurgica; assistenza in sala operatoria e gestione del paziente prima e dopo l’intervento; collaborazione con il GOM (Gruppo Oncologico Multidisciplinare); esecuzione di biopsie prostatiche transrettali (a mano libera, biplanari, fusion) e transperineali fusion.</span></li>
-          <li><b>Medico responsabile di un centro dialisi</b><span>Gestione clinica dei pazienti in trattamento dialitico.</span></li>
-          <li><b>Medico sportivo</b><span>Attività clinica e di primo intervento su atleti.</span></li>
-        </ul>
+        <ul class="elenco-cv"><li><b>Dirigente medico specializzando, Presidio Ospedaliero «Moscati», Aversa</b><span>Vincitore di concorso pubblico. Attività clinica e chirurgica in ambito urologico.</span></li><li><b>Scuola di Specializzazione in Urologia</b><span>Università di Napoli «Federico II». Formazione clinica e chirurgica; assistenza in sala operatoria e gestione del paziente prima e dopo l’intervento; collaborazione con il GOM (Gruppo Oncologico Multidisciplinare); esecuzione di biopsie prostatiche transrettali (a mano libera, biplanari, fusion) e transperineali fusion.</span></li></ul><details class="pubblicazioni piega"><summary>Vedi tutte (4)</summary><ul class="elenco-cv"><li><b>Medico responsabile di un centro dialisi</b><span>Gestione clinica dei pazienti in trattamento dialitico.</span></li><li><b>Medico sportivo</b><span>Attività clinica e di primo intervento su atleti.</span></li></ul></details>
       </div>
       <div class="card card--testo card--cong">
         <h3>Congressi, corsi e workshop</h3>
-        <ul class="elenco-cv elenco-cv--semplice">
-          <li>97° Congresso Nazionale SIU (Società Italiana di Urologia)</li>
-          <li>48° Congresso Nazionale SIA (Società Italiana di Andrologia)</li>
-          <li>19° Congresso Nazionale UrOP</li>
-          <li>Corso HoLEP, enucleazione prostatica con laser a Olmio</li>
-          <li>Update sul carcinoma prostatico</li>
-          <li>Workshop di chirurgia mini-invasiva in Urologia</li>
-          <li>Corso base di ecografia urologica</li>
-          <li>SIU Academy</li>
-        </ul>
+        <ul class="elenco-cv elenco-cv--semplice"><li>97° Congresso Nazionale SIU (Società Italiana di Urologia)</li><li>48° Congresso Nazionale SIA (Società Italiana di Andrologia)</li><li>19° Congresso Nazionale UrOP</li></ul><details class="pubblicazioni piega"><summary>Vedi tutti (8)</summary><ul class="elenco-cv elenco-cv--semplice"><li>Corso HoLEP, enucleazione prostatica con laser a Olmio</li><li>Update sul carcinoma prostatico</li><li>Workshop di chirurgia mini-invasiva in Urologia</li><li>Corso base di ecografia urologica</li><li>SIU Academy</li></ul></details>
         <p class="cv-nota">Certificazioni attive: BLSD, ALS; istruttore BLSD. Inglese B2.</p>
       </div>
     </div>
@@ -234,13 +233,14 @@
 <section class="blocco" id="visita" data-tema="chiaro">
   <div class="blocco__in">
     <h2>Come funziona la visita</h2>
-    <ol class="passi">
-      <li class="card"><em>1</em><b>Ci contatti</b><span class="card__txt">e fissiamo un orario.</span></li>
-      <li class="card"><em>2</em><b>Ci racconti</b><span class="card__txt">cosa ti porta qui.</span></li>
-      <li class="card"><em>3</em><b>Visita</b><span class="card__txt">ed eventuali esami.</span></li>
-      <li class="card"><em>4</em><b>Ti spieghiamo</b><span class="card__txt">cosa abbiamo visto e quali sono i passi successivi.</span></li>
+    <p class="blocco__lead">Quattro passaggi semplici, con tempi chiari e la massima riservatezza.</p>
+    <ol class="percorso">
+      <li><span class="percorso__ico"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M8 2v4M16 2v4M3.5 9h17M5 4h14a1.5 1.5 0 0 1 1.5 1.5v14A1.5 1.5 0 0 1 19 21H5a1.5 1.5 0 0 1-1.5-1.5v-14A1.5 1.5 0 0 1 5 4zM8 13h3M8 17h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>01</em><b>Prenoti</b><p>Ci contatti per telefono, email o dal modulo e fissiamo l’orario.</p></li>
+      <li><span class="percorso__ico"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.6A8.5 8.5 0 1 1 21 12zM8.5 10.5h7M8.5 14h4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>02</em><b>Ci racconti</b><p>Ti ascoltiamo con calma: sintomi, dubbi ed esami che hai già fatto.</p></li>
+      <li><span class="percorso__ico"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M6 3v6a4 4 0 0 0 8 0V3M6 3H4.5M14 3h1.5M10 13v2.5a4.5 4.5 0 0 0 9 0V13M19 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>03</em><b>La visita</b><p>Visita urologica e, se serve, un’ecografia nello stesso appuntamento.</p></li>
+      <li><span class="percorso__ico"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1zM8 5H6a1.5 1.5 0 0 0-1.5 1.5v13A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 18 5h-2M8.5 12.5l2.2 2.2 4.8-4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><em>04</em><b>Il piano</b><p>Ti spieghiamo cosa abbiamo visto e quali sono i passi successivi.</p></li>
     </ol>
-    <p class="blocco__lead blocco__lead--piccolo">Tutto resta tra te e il medico.</p>
+    <div class="percorso__fondo"><p>Tutto resta tra te e il medico.</p><a class="pillola pillola--primaria" href="#contatto">Prenota una visita</a></div>
   </div>
 </section>
 
@@ -255,7 +255,6 @@
         <ul class="recapiti"><li><a href="tel:+393333595510">333 359 5510</a></li><li><a href="mailto:drmichelemusone@gmail.com">drmichelemusone@gmail.com</a></li><li>Via Piersanti Mattarella 14<br>81025 Marcianise (CE)</li></ul>
       </div>
       <form class="modulo card" id="modulo" novalidate>
-        <p class="modulo__avviso" role="note">Non scrivere dati clinici o sintomi dettagliati: ne parliamo in visita.</p>
         <label for="f-nome">Nome e cognome</label>
         <input id="f-nome" name="nome" autocomplete="name" required>
         <label for="f-tel">Telefono</label>
@@ -266,6 +265,7 @@
         <p class="modulo__codice" id="moduloCodice" hidden>Abbiamo aggiunto un codice breve dalle tue risposte al questionario: puoi tenerlo o cancellarlo.</p>
         <textarea id="f-msg" name="messaggio" rows="3" maxlength="400"></textarea>
         <button class="pillola pillola--primaria" type="submit">Invia la richiesta</button>
+        <p class="modulo__avviso" role="note">Non scrivere dati clinici o sintomi dettagliati: ne parliamo in visita.</p>
         <p class="modulo__esito" id="esito" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -301,8 +301,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/xray.js?v=94"></script>
-<script src="js/guida.js?v=94"></script>
-<script src="js/pagina.js?v=94"></script>
+<script src="js/xray.js?v=96"></script>
+<script src="js/guida.js?v=96"></script>
+<script src="js/pagina.js?v=96"></script>
 </body>
 </html>

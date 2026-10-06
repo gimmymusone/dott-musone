@@ -841,3 +841,42 @@ body{background:var(--xray-bg)}
 
 @media (max-width:900px){.is-scroll .xray{height:480svh}}   /* sosta breve: timeline 4,9 invece di 7,2 */
 @media (max-width:900px){.hero__ruolo .sep{display:none}.hero__ruolo .r2{display:block;margin-top:6px;font-size:.86em;opacity:.85}.is-scroll .hero .hero__ruolo{max-width:none}}
+
+/* ══ Come funziona la visita: percorso a 4 tappe con icone e linea che le collega ══ */
+.percorso{list-style:none;margin:clamp(22px,3vw,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);position:relative;counter-reset:none}
+.percorso::before{content:"";position:absolute;left:12.5%;right:12.5%;top:calc(clamp(22px,2.4vw,30px) + 28px);height:2px;background:repeating-linear-gradient(90deg,var(--blue-500) 0 8px,transparent 8px 16px);opacity:.35}
+.percorso li{position:relative;display:grid;justify-items:center;text-align:center;gap:8px;background:var(--fondo-chiaro);border-radius:clamp(26px,3vw,40px);padding:clamp(22px,2.4vw,30px) clamp(16px,1.8vw,24px) clamp(24px,2.6vw,32px)}
+.percorso__ico{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--blue-500);box-shadow:0 0 0 6px var(--fondo-chiaro),0 8px 22px rgba(47,107,255,.18);transition:transform .25s,background .25s,color .25s}
+.percorso li:hover .percorso__ico{transform:translateY(-3px);background:var(--blue-500);color:#fff}
+.percorso em{font:400 12.5px var(--f-titoli);letter-spacing:.24em;color:var(--blue-500);font-style:normal;margin-top:8px}
+.percorso b{font:400 clamp(20px,1.7vw,24px)/1.15 var(--f-titoli);letter-spacing:-.015em;color:var(--ink)}
+.percorso p{margin:0;max-width:24ch;color:var(--ink-muted);font-size:clamp(15px,1.1vw,16.5px);line-height:1.45}
+.percorso__fondo{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(18px,2.4vw,28px);padding:clamp(16px,2vw,22px) clamp(20px,2.6vw,32px);border-radius:999px;background:var(--blue-100)}
+.percorso__fondo p{margin:0;color:var(--ink);font-size:clamp(16px,1.3vw,18px)}
+@media (max-width:900px){
+  .percorso{grid-template-columns:minmax(0,1fr);gap:10px}
+  .percorso::before{left:calc(clamp(16px,4vw,24px) + 28px);right:auto;top:28px;bottom:28px;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--blue-500) 0 8px,transparent 8px 16px)}
+  .percorso li{grid-template-columns:56px 1fr;grid-template-areas:"ico em" "ico b" "ico p";justify-items:start;text-align:left;column-gap:16px;row-gap:2px;padding:18px clamp(16px,4vw,24px)}
+  .percorso__ico{grid-area:ico;align-self:start}
+  .percorso em{grid-area:em;margin:0}.percorso b{grid-area:b}.percorso p{grid-area:p;max-width:none}
+  .percorso__fondo{border-radius:28px;justify-content:center;text-align:center}
+}
+
+/* Chi è: «Vedi tutte» come per le pubblicazioni */
+.piega{margin-top:14px}
+.piega > ul{margin-top:14px}
+
+/* modulo: avviso sotto il pulsante */
+.modulo .modulo__avviso{margin:12px 0 0;font-size:13.5px;color:var(--ink-muted);background:none;padding:0;border:0}
+
+/* ══ domanda anonima ══ */
+.anonima{display:grid;gap:6px;margin-top:clamp(18px,2.4vw,28px);padding:clamp(22px,3vw,40px);border-radius:clamp(28px,3vw,40px);background:var(--fondo-chiaro)}
+.anonima__testa h3{margin:0 0 6px;font:400 clamp(22px,2.2vw,30px)/1.15 var(--f-titoli);letter-spacing:-.02em}
+.anonima__testa p{margin:0 0 8px;color:var(--ink-muted);max-width:62ch}
+.anonima label{font-size:14.5px;margin-top:8px}
+.anonima input[type=email],.anonima textarea{font:inherit;font-size:16px;min-height:48px;padding:12px 16px;border:1.5px solid transparent;border-radius:20px;background:#fff;color:var(--ink)}
+.anonima input:focus,.anonima textarea:focus{border-color:var(--blue-500);outline:0}
+.anonima__ok{display:flex;gap:10px;align-items:flex-start;color:var(--ink-muted);font-size:14px!important}
+.anonima__ok input{width:20px;height:20px;margin-top:1px;accent-color:var(--blue-500);flex:none}
+.anonima button{justify-self:start;margin-top:12px}
+.percorso li{align-content:start}
