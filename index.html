@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="it" data-tema="scuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dott. Michele Musone — Medico chirurgo, Urologia e Andrologia</title>
+<meta name="description" content="Dott. Michele Musone, medico chirurgo, Urologia e Andrologia, presso il Presidio Ospedaliero «Moscati» di Aversa. Informazioni informazioni sulle principali aree e prenotazione di una visita a Marcianise (CE).">
+<meta name="robots" content="noindex">
+<script>
+  /* Come Salzillo (2026-09-30): alla ricarica si riparte sempre dall'inizio,
+     altrimenti il browser rimette la pagina a metà e le scene a scrub partono
+     da uno stato sbagliato. */
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if(location.hash) history.replaceState(null, '', location.pathname + location.search);
+  scrollTo(0, 0);
+  addEventListener('pageshow', e=>{ if(e.persisted) location.reload(); });
+  document.documentElement.classList.add('intro-lock');
+</script>
+<link rel="preload" href="fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/hero.jpg" as="image">
+<link rel="stylesheet" href="css/style.css?v=77">
+<link rel="icon" type="image/svg+xml" href="assets/logo-circolare.svg?v=3">
+<script>document.fonts&&document.fonts.load('400 1em "PP Neue Montreal"').then(function(f){if(f.length)document.documentElement.classList.add("font-pp")}).catch(function(){})</script>
+</head>
+<body>
+
+<!-- Caricamento: finché il ritratto e i font non ci sono, la pagina non scorre -->
+<div class="caricamento" id="caricamento" aria-hidden="true"><span>Michele Musone</span></div>
+
+<a class="salta-contenuto" href="#principale">Vai al contenuto</a>
+
+<header class="barra" id="barra">
+  <a class="marchio" href="#xray" aria-label="Michele Musone, medico chirurgo — inizio pagina"><img class="m-chiaro" src="assets/marchio-chiaro.svg?v=1" alt="" width="900" height="960"><img class="m-scuro" src="assets/marchio.svg?v=4" alt="" width="900" height="960"></a>
+  <div class="barra__col">
+    <nav class="menu" id="menu" aria-label="Principale">
+      <a href="#xray" data-vai-aree>Le aree</a>
+      <a href="#chi">Chi sono</a>
+      <a href="#visita">La visita</a>
+      <a href="#contatto">Contatti</a>
+    </nav>
+  </div>
+  <div class="barra__az">
+    <a class="pillola pillola--primaria barra__cta" href="#contatto">Prenota una visita</a>
+    <button class="hamburger" id="hamburger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="principale">
+
+<!-- ═══════════ 1. HERO + SCROLL X-RAY ═══════════
+     Senza JS (o con «riduci movimento») questa sezione è una pagina normale:
+     hero, poi quattro zone una sotto l'altra, ciascuna con la sua figura ritagliata. -->
+<section class="xray" id="xray" aria-label="Le principali aree dell'urologia">
+  <div class="stage" id="stage">
+
+    <!-- Lo scheletro di Michele: UNA sola immagine. La hero la mostra a sinistra (sotto la foto), poi la telecamera la porta al centro e sulle zone. -->
+    <div class="corpo" id="corpo" aria-hidden="true">
+      <img class="c-a" src="assets/xray-a.jpg" alt="" width="3200" height="3972">
+      <img class="organo" data-zona="reni" src="assets/organo-reni.png" alt="" loading="lazy" style="left:6.3%;top:37.41%;width:30.01%">
+      <img class="organo" data-zona="vescica" src="assets/organo-vescica.png" alt="" loading="lazy" style="left:9.99%;top:58.79%;width:19.99%">
+      <img class="organo" data-zona="prostata" src="assets/organo-prostata.png?v=2" alt="" loading="lazy" style="left:12.61%;top:63.84%;width:16.0%">
+      <img class="organo" data-zona="testicoli" src="assets/organo-testicoli.png" alt="" loading="lazy" style="left:11.69%;top:67.69%;width:19.99%">
+      <svg class="anello" data-zona="reni" style="left:16.8%;top:49.5%;width:5.5%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" vector-effect="non-scaling-stroke"/></svg>
+      <svg class="anello" data-zona="reni" style="left:25.76%;top:49.5%;width:5.5%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" vector-effect="non-scaling-stroke"/></svg>
+      <svg class="anello" data-zona="vescica" style="left:20.0%;top:66.85%;width:6%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" vector-effect="non-scaling-stroke"/></svg>
+      <svg class="anello anello--schema" data-zona="prostata" style="left:20.6%;top:70.25%;width:5%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" vector-effect="non-scaling-stroke"/></svg>
+      <svg class="anello" data-zona="testicoli" style="left:21.7%;top:75.75%;width:8%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" vector-effect="non-scaling-stroke"/></svg>
+    </div>
+
+    <div class="pila" id="pila">
+      <img class="pila__xray" src="assets/xray-a.jpg" alt="" width="3200" height="3972">
+      
+      <picture class="pila__foto"><source media="(min-width:901px)" srcset="assets/hero-16x9.jpg"><img src="assets/hero.jpg" alt="Il dott. Michele Musone in camice, a braccia incrociate, in una sala operatoria con la lampada e il sistema robotico alle spalle" width="1200" height="1600" fetchpriority="high"></picture>
+      <div class="scan" aria-hidden="true"><div class="cartello"><b>ATTENZIONE</b><span><svg viewBox="-12 -12 24 24" width="26" height="26"><circle r="6" fill="none" stroke="#0B1630" stroke-width="11" stroke-dasharray="6.283 12.566" transform="rotate(-120)"/><circle r="2.4" fill="#F2D43B" stroke="#0B1630" stroke-width="1.6"/></svg>RAGGI X IN USO</span></div></div>
+    </div>
+
+    <div class="hero" id="heroTxt">
+      <p class="hero__ruolo">Dott. Michele Musone · Medico chirurgo</p>
+      <h1><span class="l1">Urologia, con chiarezza</span> <span class="l2">e riservatezza.</span></h1>
+      <p class="hero__testo">Parlare di salute urologica non è facile per nessuno. Qui trovi spiegazioni semplici, un medico che ascolta e un percorso chiaro dal primo contatto alla visita.</p>
+      <div class="hero__az">
+        <a class="pillola pillola--primaria" href="#contatto">Prenota una visita</a>
+        <a class="pillola" href="#xray" data-vai-aree>Scopri le aree</a>
+      </div>
+    </div>
+    <ul class="didascalie" aria-hidden="true">
+      <li>Dott. Michele <span>Musone</span></li>
+      <li>Urologia <span>e andrologia</span></li>
+      <li>Ascolto, chiarezza <span>e riservatezza</span></li>
+    </ul>
+
+    <div class="punti" id="punti">
+      <p class="punti__guida">Scegli un punto per scoprire le aree dell'urologia</p>
+      <div class="elenco" id="elenco">
+        <button class="elenco__testa" type="button" aria-expanded="false" aria-controls="elencoLista"><span>Esplora le aree</span><i aria-hidden="true"></i></button>
+        <ul class="elenco__lista" id="elencoLista">
+          <li><button type="button" data-zona="reni"><span class="ico"><img src="assets/ico-reni.png" alt="" width="60" height="60"></span><span class="nome"><span>Reni</span><small>Calcoli, dolore al fianco</small></span><b aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></b></button></li>
+          <li><button type="button" data-zona="vescica"><span class="ico"><img src="assets/ico-vescica.png" alt="" width="60" height="60"></span><span class="nome"><span>Vescica</span><small>Bruciore, urgenza, perdite</small></span><b aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></b></button></li>
+          <li><button type="button" data-zona="prostata"><span class="ico"><img src="assets/ico-prostata.png?v=2" alt="" width="60" height="60"></span><span class="nome"><span>Prostata</span><small>PSA, difficoltà a urinare</small></span><b aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></b></button></li>
+          <li><button type="button" data-zona="testicoli"><span class="ico"><img src="assets/ico-testicoli.png" alt="" width="60" height="60"></span><span class="nome"><span>Testicoli e genitali</span><small>Dolore, gonfiore, fertilità</small></span><b aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></b></button></li>
+        </ul>
+      </div>
+      <button class="punto" type="button" data-zona="reni" data-x=".2576" data-y=".495" aria-label="Reni: scopri di più"><i></i></button>
+      <button class="punto" type="button" data-zona="vescica" data-x=".20" data-y=".6685" aria-label="Vescica: scopri di più"><i></i></button>
+      <button class="punto" type="button" data-zona="prostata" data-x=".206" data-y=".7025" aria-label="Prostata: scopri di più"><i></i></button>
+      <button class="punto" type="button" data-zona="testicoli" data-x=".217" data-y=".7575" aria-label="Testicoli e genitali esterni: scopri di più"><i></i></button>
+    </div>
+
+    <div class="vz" id="vz">
+      <button class="vz__indietro" id="vzIndietro" type="button" aria-label="Torna al corpo"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="vz__etichetta" id="vzEtichetta" type="button" aria-label="Apri la scheda"><i></i><span id="vzEtichettaTesto"></span></button>
+      <div class="vz__selettore">
+        <button class="vz__freccia" id="vzPrec" type="button" aria-label="Zona precedente"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="vz__nome" id="vzNome" type="button" aria-label="Apri la scheda"><span class="vz__ico" id="vzIco"></span><span class="vz__txt" id="vzTxt"></span></button>
+        <button class="vz__freccia" id="vzSucc" type="button" aria-label="Zona successiva"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <div class="zone" id="zone">
+
+      <article class="zona" data-zona="reni" data-x="0.213" data-y="0.495" data-f="0.2" style="--fx:0.213;--fy:0.495;--fs:5">
+        <header class="z-titolo"><h2>Reni</h2><p>I reni filtrano il sangue e producono urina. Un urologo si occupa di calcoli, ostruzioni e di altre condizioni che ne alterano il funzionamento.</p></header>
+        <button class="z-chiudi" type="button" aria-label="Chiudi la scheda"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span class="sr">Chiudi la scheda</span></button>
+        <figure class="zona__fig" aria-hidden="true"><img src="assets/xray-a.jpg" alt="" loading="lazy"></figure>
+        <div class="z-sx"><h3>Condizioni</h3><ul><li>Calcolosi renale e ureterale</li><li>Colica renale</li><li>Cisti, masse e tumori renali</li><li>Idronefrosi e ostruzioni</li><li>Sangue nelle urine</li></ul></div>
+        <div class="z-dx"><h3>Prestazioni</h3><ul><li>Visita urologica</li><li>Ecografia dell’apparato urinario</li><li>Ureteroscopia e RIRS</li><li>PCNL</li></ul></div>
+        <a class="z-domanda pillola" href="#contatto">Hai avuto dolore al fianco o sangue nelle urine?</a>
+      </article>
+
+      <article class="zona" data-zona="vescica" data-x="0.2" data-y="0.6685" data-f="0.1" style="--fx:0.2;--fy:0.6685;--fs:10">
+        <header class="z-titolo"><h2>Vescica</h2><p>La vescica raccoglie l'urina. Bruciore, urgenza o perdite non sono «normali»: sono segnali che si possono valutare.</p></header>
+        <button class="z-chiudi" type="button" aria-label="Chiudi la scheda"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span class="sr">Chiudi la scheda</span></button>
+        <figure class="zona__fig" aria-hidden="true"><img src="assets/xray-a.jpg" alt="" loading="lazy"></figure>
+        <div class="z-sx"><h3>Condizioni</h3><ul><li>Cistiti e infezioni urinarie</li><li>Sangue nelle urine</li><li>Calcolosi e tumori della vescica</li><li>Vescica iperattiva e incontinenza</li><li>Disturbi dello svuotamento</li></ul></div>
+        <div class="z-dx"><h3>Prestazioni</h3><ul><li>Visita urologica ed ecografia</li><li>Uroflussometria e residuo post-minzionale</li><li>Cistoscopia e TURB</li><li>Follow-up delle neoplasie e terapie endovescicali</li></ul></div>
+        <a class="z-domanda pillola" href="#contatto">Vai in bagno più spesso del solito o hai perdite involontarie?</a>
+      </article>
+
+      <article class="zona" data-zona="prostata" data-x="0.206" data-y="0.7025" data-f="0.085" style="--fx:0.206;--fy:0.7025;--fs:11.76">
+        <header class="z-titolo"><h2>Prostata</h2><p>La prostata cambia con l'età. Controllarla non significa avere un problema: serve a capire come sta.</p></header>
+        <button class="z-chiudi" type="button" aria-label="Chiudi la scheda"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span class="sr">Chiudi la scheda</span></button>
+        <figure class="zona__fig" aria-hidden="true"><img src="assets/xray-a.jpg" alt="" loading="lazy"></figure>
+        <div class="z-sx"><h3>Condizioni</h3><ul><li>Ipertrofia prostatica e disturbi urinari</li><li>Prostatite</li><li>PSA elevato</li><li>Alterazioni prostatiche sospette</li><li>Tumore della prostata</li></ul></div>
+        <div class="z-dx"><h3>Prestazioni</h3><ul><li>Visita urologica e valutazione del PSA</li><li>Ecografia prostatica e uroflussometria</li><li>Biopsia transrettale e transperineale (anche fusion)</li><li>TURP quando indicata</li><li>Follow-up della patologia prostatica</li></ul></div>
+        <a class="z-domanda pillola" href="#contatto">Fai fatica a iniziare a urinare o ti svegli di notte per farlo?</a>
+        <p class="z-nota">Posizione indicativa: schema, non radiografia.</p>
+      </article>
+
+      <article class="zona" data-zona="testicoli" data-x="0.217" data-y="0.7575" data-f="0.075" style="--fx:0.217;--fy:0.7575;--fs:13.3">
+        <header class="z-titolo"><h2>Testicoli e genitali esterni</h2><p>Dolore, gonfiore o un cambiamento che non ti aspettavi: sono motivi normali per una visita, e se ne parla con riservatezza.</p></header>
+        <button class="z-chiudi" type="button" aria-label="Chiudi la scheda"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span class="sr">Chiudi la scheda</span></button>
+        <figure class="zona__fig" aria-hidden="true"><img src="assets/xray-a.jpg" alt="" loading="lazy"></figure>
+        <div class="z-sx"><h3>Condizioni</h3><ul><li>Varicocele e idrocele</li><li>Dolore, gonfiore, masse del testicolo</li><li>Epididimite, orchite, torsione</li><li>Fimosi, Peyronie, lesioni del pene</li><li>Disfunzione erettile e disturbi dell’eiaculazione</li><li>Infertilità maschile</li></ul></div>
+        <div class="z-dx"><h3>Prestazioni</h3><ul><li>Visita urologica e andrologica</li><li>Ecografia testicolare</li><li>Spermiogramma e profilo ormonale</li><li>Ecocolordoppler penieno</li><li>Terapia della disfunzione erettile</li><li>Circoncisione quando indicata</li></ul></div>
+        <a class="z-domanda pillola" href="#contatto">Hai notato un cambiamento o senti dolore in questa zona?</a>
+        <p class="z-nota">Un gonfiore o un dolore improvviso va valutato subito: non aspettare.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="pagina" id="pagina">
+
+<!-- ═══════════ 2. NON SAI DA DOVE INIZIARE ═══════════ -->
+<section class="blocco" id="orienta" data-tema="chiaro">
+  <div class="blocco__in">
+    <h2>Non sai da dove iniziare?</h2>
+    <p class="blocco__lead">Rispondi a quattro domande: ti indichiamo l'area da cui partire. Non è una diagnosi e non raccogliamo le tue risposte.</p>
+    <div class="quiz" id="quiz">
+      <div class="quiz__top">
+        <button class="quiz__indietro" id="quizIndietro" type="button" hidden>‹ Indietro</button>
+        <span class="quiz__conta" id="quizConta">Domanda 1 di 4</span>
+        <div class="quiz__barra" aria-hidden="true"><i id="quizBarra"></i></div>
+      </div>
+      <div class="quiz__corpo" id="quizCorpo" aria-live="polite">
+        <p class="quiz__senzajs">Scrivici cosa senti e ti orientiamo noi. <a href="#contatto">Vai ai contatti</a></p>
+      </div>
+    </div>
+    <p class="avviso">Questo sito non fa diagnosi e non sostituisce la visita. In caso di dolore forte o improvviso, rivolgiti al pronto soccorso.</p>
+  </div>
+</section>
+
+<!-- ═══════════ 3. CHI È ═══════════ -->
+<section class="blocco" id="chi" data-tema="chiaro">
+  <div class="blocco__in">
+    <h2>Chi è il dott. Musone</h2>
+    <div class="chi">
+      <figure class="card card--ritratto"><img src="assets/hero.jpg" alt="Il dott. Michele Musone in camice" loading="lazy"><figcaption><b>Dott. Michele Musone</b><span>Medico chirurgo · Urologia e Andrologia</span></figcaption></figure>
+      <div class="chi__col">
+        <div class="card card--testo">
+          <h3>Formazione</h3>
+          <p>Laurea in <b>Medicina e Chirurgia</b> all’Università degli Studi della Campania «Luigi Vanvitelli», con votazione 110/110 e lode. Scuola di Specializzazione in <b>Urologia</b>, Università degli Studi di Napoli «Federico II».</p>
+        </div>
+        <div class="card card--testo">
+          <h3>Dove lavora</h3>
+          <p>Dirigente medico specializzando presso il Presidio Ospedaliero «Moscati» di Aversa, vincitore di concorso pubblico. Attività clinica e chirurgica in ambito urologico.</p>
+        </div>
+      </div>
+      <div class="card card--ricerca">
+        <h3>Ricerca e pubblicazioni</h3>
+        <p>Attività scientifica in ambito urologico: 13 pubblicazioni tra il 2025 e il 2026 su tumori urologici, biomarcatori, disfunzione erettile e infertilità maschile. Primo autore di due lavori sul tumore della vescica.</p>
+        <ul class="chips"><li>Patologia prostatica</li><li>Uro-oncologia</li><li>Endourologia</li><li>Calcolosi urinaria</li><li>Patologia della vescica</li><li>Andrologia</li><li>Disfunzione erettile</li><li>Fertilità maschile</li></ul>
+        <details class="pubblicazioni"><summary>Vedi le 13 pubblicazioni</summary><ol><li><a href="https://pubmed.ncbi.nlm.nih.gov/42704600/" target="_blank" rel="noopener"><span>Robotic surgery across surgical specialties: an Italian survey on implementation, training, and satisfaction levels among trainees and young attendings (SPIGC)</span><small>Updates in Surgery, 2026</small></a></li><li><a href="https://doi.org/10.1007/s40487-026-00445-8" target="_blank" rel="noopener"><span>Beyond the BCG Paradox: biological rationale and clinical evidence for combining intravesical BCG with immune checkpoint inhibitors in high-risk NMIBC</span><small>Oncology and Therapy, 2026 · primo autore</small></a></li><li><a href="https://doi.org/10.3390/reprodmed7030030" target="_blank" rel="noopener"><span>Chronic epididymitis and orchitis: pathophysiology, diagnosis and management in the context of male infertility</span><small>Reproductive Medicine, 2026</small></a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/42195107/" target="_blank" rel="noopener"><span>Erectile dysfunction: a comprehensive review of pathophysiology, diagnosis and contemporary management</span><small>Medicina, 2026</small></a></li><li><a href="https://doi.org/10.3390/medicina62040757" target="_blank" rel="noopener"><span>PEACE: development and validation of a brief five-item sleep quality scale for community and primary care</span><small>Medicina, 2026</small></a></li><li><a href="https://doi.org/10.3390/jcm15010397" target="_blank" rel="noopener"><span>Male infertility: a comprehensive review of urological causes and contemporary management</span><small>Journal of Clinical Medicine, 2026</small></a></li><li><a href="https://doi.org/10.1007/s40487-025-00411-w" target="_blank" rel="noopener"><span>Toward personalized treatment of urogenital cancers: the role of patient-derived organoids</span><small>Oncology and Therapy, 2026</small></a></li><li><a href="https://doi.org/10.1016/j.jlb.2025.100305" target="_blank" rel="noopener"><span>Blood and urine-based biomarkers in prostate cancer: current advances, clinical applications, and future directions</span><small>The Journal of Liquid Biopsy, 2025</small></a></li><li><div class="senza-link"><span>Efficacy and putative mechanisms of action of nutraceuticals in the management of erectile dysfunction: a narrative review</span><small>Journal of Men’s Health, 2025</small></div></li><li><a href="https://doi.org/10.1016/j.jlb.2025.100310" target="_blank" rel="noopener"><span>Liquid biopsy: current advancements in clinical practice for bladder cancer</span><small>The Journal of Liquid Biopsy, 2025</small></a></li><li><a href="https://doi.org/10.1016/j.urolonc.2025.07.034" target="_blank" rel="noopener"><span>Liquid biopsy testing in urological cancers: focus on urine</span><small>Urologic Oncology, 2025</small></a></li><li><a href="https://doi.org/10.1515/jbcpp-2025-0106" target="_blank" rel="noopener"><span>Future therapeutic perspectives of BCG therapy for bladder cancer: an evolving horizon</span><small>J Basic Clin Physiol Pharmacol, 2025 · primo autore</small></a></li><li><a href="https://doi.org/10.1016/j.jlb.2025.100296" target="_blank" rel="noopener"><span>Circulating miRNAs in genitourinary cancer: pioneering advances in early detection and diagnosis</span><small>The Journal of Liquid Biopsy, 2025</small></a></li></ol><p class="orcid">Profilo ORCID: <a href="https://orcid.org/0009-0009-1529-982X" target="_blank" rel="noopener">0009-0009-1529-982X</a> · Dipartimento di Neuroscienze, Scienze della Riproduzione e Odontostomatologia, Università di Napoli «Federico II»</p></details>
+      </div>
+      <div class="card card--testo card--esp">
+        <h3>Esperienze professionali</h3>
+        <ul class="elenco-cv">
+          <li><b>Dirigente medico specializzando, Presidio Ospedaliero «Moscati», Aversa</b><span>Vincitore di concorso pubblico. Attività clinica e chirurgica in ambito urologico.</span></li>
+          <li><b>Scuola di Specializzazione in Urologia</b><span>Università di Napoli «Federico II». Formazione clinica e chirurgica; assistenza in sala operatoria e gestione del paziente prima e dopo l’intervento; collaborazione con il GOM (Gruppo Oncologico Multidisciplinare); esecuzione di biopsie prostatiche transrettali (a mano libera, biplanari, fusion) e transperineali fusion.</span></li>
+          <li><b>Medico responsabile di un centro dialisi</b><span>Gestione clinica dei pazienti in trattamento dialitico.</span></li>
+          <li><b>Medico sportivo</b><span>Attività clinica e di primo intervento su atleti.</span></li>
+        </ul>
+      </div>
+      <div class="card card--testo card--cong">
+        <h3>Congressi, corsi e workshop</h3>
+        <ul class="elenco-cv elenco-cv--semplice">
+          <li>97° Congresso Nazionale SIU (Società Italiana di Urologia)</li>
+          <li>48° Congresso Nazionale SIA (Società Italiana di Andrologia)</li>
+          <li>19° Congresso Nazionale UrOP</li>
+          <li>Corso HoLEP, enucleazione prostatica con laser a Olmio</li>
+          <li>Update sul carcinoma prostatico</li>
+          <li>Workshop di chirurgia mini-invasiva in Urologia</li>
+          <li>Corso base di ecografia urologica</li>
+          <li>SIU Academy</li>
+        </ul>
+        <p class="cv-nota">Certificazioni attive: BLSD, ALS; istruttore BLSD. Inglese B2.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. COME FUNZIONA LA VISITA ═══════════ -->
+<section class="blocco" id="visita" data-tema="chiaro">
+  <div class="blocco__in">
+    <h2>Come funziona la visita</h2>
+    <ol class="passi">
+      <li class="card"><em>1</em><b>Ci contatti</b><span class="card__txt">e fissiamo un orario.</span></li>
+      <li class="card"><em>2</em><b>Ci racconti</b><span class="card__txt">cosa ti porta qui.</span></li>
+      <li class="card"><em>3</em><b>Visita</b><span class="card__txt">ed eventuali esami.</span></li>
+      <li class="card"><em>4</em><b>Ti spieghiamo</b><span class="card__txt">cosa abbiamo visto e quali sono i passi successivi.</span></li>
+    </ol>
+    <p class="blocco__lead blocco__lead--piccolo">Tutto resta tra te e il medico.</p>
+  </div>
+</section>
+
+<!-- ═══════════ 5. CONTATTO ═══════════ -->
+<section class="blocco" id="contatto" data-tema="chiaro">
+  <div class="blocco__in">
+    <h2>Prenota una visita</h2>
+    <div class="contatto">
+      <div class="card card--aiuto card--grande">
+        <b>Scrivici o chiamaci</b>
+        <span class="card__txt">Per i dettagli clinici ne parliamo in visita, con la massima riservatezza.</span>
+        <ul class="recapiti"><li><a href="tel:+393333595510">333 359 5510</a></li><li><a href="mailto:drmichelemusone@gmail.com">drmichelemusone@gmail.com</a></li><li>Via Piersanti Mattarella 14<br>81025 Marcianise (CE)</li></ul>
+      </div>
+      <form class="modulo card" id="modulo" novalidate>
+        <p class="modulo__avviso" role="note">Non scrivere dati clinici o sintomi dettagliati: ne parliamo in visita.</p>
+        <label for="f-nome">Nome e cognome</label>
+        <input id="f-nome" name="nome" autocomplete="name" required>
+        <label for="f-tel">Telefono</label>
+        <input id="f-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required>
+        <label for="f-email">Email <span>(facoltativa)</span></label>
+        <input id="f-email" name="email" type="email" autocomplete="email">
+        <label for="f-msg">Messaggio breve</label>
+        <p class="modulo__codice" id="moduloCodice" hidden>Abbiamo aggiunto un codice breve dalle tue risposte al questionario: puoi tenerlo o cancellarlo.</p>
+        <textarea id="f-msg" name="messaggio" rows="3" maxlength="400"></textarea>
+        <button class="pillola pillola--primaria" type="submit">Invia la richiesta</button>
+        <p class="modulo__esito" id="esito" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</div>
+
+</main>
+
+<footer class="piede">
+  <div class="piede__riga">
+    <div class="piede__info piede__info--sx">
+      <b>Contatti</b>
+      <a href="tel:+393333595510">333 359 5510</a>
+      <a href="mailto:drmichelemusone@gmail.com">drmichelemusone@gmail.com</a>
+    </div>
+    <div class="piede__centro">
+      <img class="piede__logo" src="assets/logo.svg?v=3" alt="Dott. Michele Musone" width="1360" height="1060">
+      <p class="piede__nome">Musone Michele</p>
+      <p class="piede__ruolo">Urologo</p>
+    </div>
+    <div class="piede__info piede__info--dx">
+      <b>Studio</b>
+      <span>Via Piersanti Mattarella 14<br>81025 Marcianise (CE)</span>
+      <span>Ordine dei Medici di Caserta<br>n. iscrizione CE008969</span>
+    </div>
+  </div>
+  <p class="piede__priv"><a href="#">Privacy</a></p>
+</footer>
+
+<a class="cta-fissa pillola pillola--primaria" id="ctaFissa" href="#contatto">Prenota una visita</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/xray.js?v=77"></script>
+<script src="js/guida.js?v=77"></script>
+<script src="js/pagina.js?v=77"></script>
+</body>
+</html>
