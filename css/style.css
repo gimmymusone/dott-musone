@@ -2,6 +2,7 @@
    Token da copy/direzione-visiva.md. Font ospitati da noi (niente Google Fonts a CDN). */
 
 @font-face{font-family:'PP Neue Montreal';src:url('../fonts/PPNeueMontreal-Book.woff2') format('woff2');font-weight:300 400;font-display:swap}
+@font-face{font-family:'PP Neue Montreal';src:url('../fonts/PPNeueMontreal-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
 @font-face{font-family:'Plus Jakarta Sans';src:url('../fonts/plus-jakarta-sans.woff2') format('woff2');font-weight:200 800;font-display:swap}
 
 :root{
@@ -812,3 +813,31 @@ body{background:var(--xray-bg)}
   .vz__selettore{bottom:calc(max(24px,env(safe-area-inset-bottom)) + (100lvh - 100dvh))}
   .is-scroll .zona{bottom:calc(96px + (100lvh - 100dvh));max-height:calc(100% - var(--barra-h) - 160px - (100lvh - 100dvh))}
 }
+
+/* ══ caricamento: logo con nome e ruolo ══ */
+.caricamento__in{display:grid;justify-items:center;gap:6px;text-align:center;animation:entra-logo .9s cubic-bezier(.2,.7,.2,1) both}
+.caricamento__in img{width:clamp(72px,16vw,104px);height:auto;margin-bottom:14px;filter:drop-shadow(0 0 24px rgba(175,196,221,.35))}
+.caricamento__in b{font:400 clamp(22px,5vw,30px)/1.1 var(--f-titoli);letter-spacing:-.01em;color:#fff}
+.caricamento__in span{font:400 12.5px var(--f-titoli);letter-spacing:.32em;text-transform:uppercase;color:#AFC4DD}
+@keyframes entra-logo{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+
+@media (max-width:900px){
+  /* ══ menu a tutto schermo, voci in grassetto a zig-zag ══ */
+  .menu{position:fixed;inset:0;display:grid;grid-template-rows:repeat(4,1fr);align-items:stretch;justify-content:stretch;width:auto;height:auto;
+    padding:calc(var(--barra-h) + 8px) 28px calc(36px + env(safe-area-inset-bottom));gap:0;
+    background:var(--navy-900);border:0;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .menu a,html[data-tema="chiaro"] .menu a{font:700 clamp(40px,12vw,60px)/1 var(--f-titoli);letter-spacing:-.035em;color:#fff;min-height:0;padding:0;background:none}
+  .font-pp .menu a{font-weight:700!important}
+  .menu a:nth-child(1){justify-self:start;align-self:start;margin-top:4px}
+  .menu a:nth-child(2){justify-self:end;align-self:center}
+  .menu a:nth-child(3){justify-self:start;align-self:center}
+  .menu a:nth-child(4){justify-self:end;align-self:end}
+
+  /* ══ hero: «Dott. Michele Musone · Medico chirurgo» in alto, sopra la testa ══ */
+  .is-scroll .hero{top:calc(var(--barra-h) + 18px);display:flex;flex-direction:column;justify-content:flex-end;pointer-events:none}
+  .is-scroll .hero a{pointer-events:auto}
+  .is-scroll .hero .hero__ruolo{margin:0 auto auto;max-width:30ch;color:#fff;text-shadow:0 1px 14px rgba(8,12,40,.85),0 0 4px rgba(8,12,40,.6)}
+}
+
+@media (max-width:900px){.is-scroll .xray{height:480svh}}   /* sosta breve: timeline 4,9 invece di 7,2 */
+@media (max-width:900px){.hero__ruolo .sep{display:none}.hero__ruolo .r2{display:block;margin-top:6px;font-size:.86em;opacity:.85}.is-scroll .hero .hero__ruolo{max-width:none}}

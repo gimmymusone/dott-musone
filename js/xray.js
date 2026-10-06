@@ -130,7 +130,7 @@
       .to(corpo, { '--fl': 9, duration: 2.6, ease: 'none' }, 1.5);
 
     /* 3) il corpo si ferma: compaiono i punti; poi una sosta (lo scroll resta fermo qui) */
-    tl.to({}, { duration: 3 }, 4.2);   /* sosta: lo scroll resta fermo su questo quadro */
+    tl.to({}, { duration: mobile ? .7 : 3 }, 4.2);   /* sosta: lo scroll resta fermo su questo quadro (telefono: breve, si scende con un gesto) */
   }
 
   /* pannello e punti compaiono (a tempo, non a scroll) solo quando il corpo è arrivato e fermo */
