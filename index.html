@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dott. Michele Musone — Medico chirurgo, Urologia e Andrologia</title>
-<meta name="description" content="Dott. Michele Musone, medico chirurgo, Urologia e Andrologia, presso il Presidio Ospedaliero «Moscati» di Aversa. Informazioni informazioni sulle principali aree e prenotazione di una visita a Marcianise (CE).">
+<meta name="description" content="Dott. Michele Musone, medico chirurgo, Urologia e Andrologia, presso il Presidio Ospedaliero «Moscati» di Aversa. Informazioni sulle principali aree e prenotazione di una visita a Marcianise (CE).">
 <meta name="robots" content="noindex">
 <script>
   /* Come Salzillo (2026-09-30): alla ricarica si riparte sempre dall'inizio,
@@ -18,7 +18,7 @@
 </script>
 <link rel="preload" href="fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/hero.jpg" as="image">
-<link rel="stylesheet" href="css/style.css?v=96">
+<link rel="stylesheet" href="css/style.css?v=98">
 <link rel="icon" type="image/svg+xml" href="assets/logo-circolare.svg?v=3">
 <script>document.fonts&&document.fonts.load('400 1em "PP Neue Montreal"').then(function(f){if(f.length)document.documentElement.classList.add("font-pp")}).catch(function(){})</script>
 </head>
@@ -178,6 +178,7 @@
       </div>
     </div>
     <form class="anonima" id="anonima" novalidate>
+      <input class="vaso" type="text" name="sito" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="anonima__testa">
         <h3>Preferisci fare una domanda in forma anonima?</h3>
         <p>Il medico legge solo la domanda. L’email serve soltanto per recapitarti la risposta: non gli viene mostrata.</p>
@@ -186,7 +187,7 @@
       <textarea id="a-domanda" name="domanda" rows="4" maxlength="600" required placeholder="Es. A che età è consigliato il primo controllo della prostata?"></textarea>
       <label for="a-email">Email per ricevere la risposta</label>
       <input id="a-email" name="email" type="email" autocomplete="email" required>
-      <label class="anonima__ok"><input type="checkbox" name="consenso" required> Ho letto l’informativa privacy e non ho inserito nome, cognome o dati che mi identificano.</label>
+      <label class="anonima__ok"><input type="checkbox" name="consenso" required> Ho letto l’<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a>, acconsento al trattamento della domanda e non ho inserito nome, cognome o dati che mi identificano.</label>
       <button class="pillola pillola--primaria" type="submit">Invia la domanda</button>
       <p class="modulo__esito" id="anonimaEsito" role="status" aria-live="polite"></p>
     </form>
@@ -255,6 +256,7 @@
         <ul class="recapiti"><li><a href="tel:+393333595510">333 359 5510</a></li><li><a href="mailto:drmichelemusone@gmail.com">drmichelemusone@gmail.com</a></li><li>Via Piersanti Mattarella 14<br>81025 Marcianise (CE)</li></ul>
       </div>
       <form class="modulo card" id="modulo" novalidate>
+        <input class="vaso" type="text" name="sito" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label for="f-nome">Nome e cognome</label>
         <input id="f-nome" name="nome" autocomplete="name" required>
         <label for="f-tel">Telefono</label>
@@ -294,15 +296,15 @@
       <span>Ordine dei Medici di Caserta<br>n. iscrizione CE008969</span>
     </div>
   </div>
-  <p class="piede__priv"><a href="#">Privacy</a></p>
+  <p class="piede__priv"><a href="privacy.html">Privacy</a></p>
 </footer>
 
 <a class="cta-fissa pillola pillola--primaria" id="ctaFissa" href="#contatto">Prenota una visita</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/xray.js?v=96"></script>
-<script src="js/guida.js?v=96"></script>
-<script src="js/pagina.js?v=96"></script>
+<script src="js/xray.js?v=98"></script>
+<script src="js/guida.js?v=98"></script>
+<script src="js/pagina.js?v=98"></script>
 </body>
 </html>

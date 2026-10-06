@@ -181,19 +181,35 @@
     if(window.XRAY && window.XRAY.vaiAllaPrimaZona()) e.preventDefault();
   }));
 
-  /* ── domanda anonima: in bozza non invia nulla (serve il servizio che tiene l'email separata dalla domanda) ── */
+  /* ── invio dei moduli al servizio del sito (Worker musone-urologo) ── */
+  const API = 'https://musone-api.3-lab.it';
+  async function spedisci(percorso, dati, form, esito, okTesto){
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; esito.textContent = 'Invio in corso…';
+    try {
+      const r = await fetch(API + percorso, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dati) });
+      const j = await r.json().catch(() => ({}));
+      if(r.ok && j.ok){ form.reset(); esito.textContent = okTesto; return; }
+      esito.textContent = r.status === 429 ? 'Hai già inviato più messaggi: riprova tra un’ora oppure chiamaci.' : 'Controlla i campi e riprova.';
+    } catch {
+      esito.textContent = 'Invio non riuscito: controlla la connessione oppure chiamaci al 333 359 5510.';
+    } finally { btn.disabled = false; }
+  }
+
+  /* ── domanda anonima: il testo va al medico, l'email resta separata e serve solo per la risposta ── */
   const an = $('#anonima'), anEs = $('#anonimaEsito');
   if(an && anEs) an.addEventListener('submit', ev => {
     ev.preventDefault();
     const d = an.domanda, m = an.email, ok = an.consenso;
-    const mancano = [[d, !d.value.trim()], [m, !m.value.trim() || !m.checkValidity()], [ok, !ok.checked]];
+    const mancano = [[d, d.value.trim().length < 10], [m, !m.value.trim() || !m.checkValidity()], [ok, !ok.checked]];
     mancano.forEach(([c, err]) => c.setAttribute('aria-invalid', String(err)));
     const primo = mancano.find(([, err]) => err);
-    if(primo){ anEs.textContent = 'Scrivi la domanda, un’email valida e conferma l’informativa.'; primo[0].focus(); return; }
-    anEs.textContent = 'Bozza: l’invio non è ancora collegato, nessun dato è stato inviato.';
+    if(primo){ anEs.textContent = 'Scrivi la domanda (almeno qualche parola), un’email valida e conferma l’informativa.'; primo[0].focus(); return; }
+    spedisci('/domanda', { domanda: d.value, email: m.value, consenso: true, sito: an.sito.value }, an, anEs,
+      'Domanda inviata. Riceverai la risposta via email: il medico non vede il tuo indirizzo.');
   });
 
-  /* ── modulo: in bozza non invia nulla ── */
+  /* ── modulo «Prenota una visita» ── */
   const f = $('#modulo'), esito = $('#esito');
   if(f && esito) f.addEventListener('submit', ev => {
     ev.preventDefault();
@@ -204,6 +220,7 @@
       (nome.value.trim() ? tel : nome).focus();
       return;
     }
-    esito.textContent = 'Bozza: l\'invio non è ancora collegato, nessun dato è stato inviato.';
+    spedisci('/contatto', { nome: nome.value, telefono: tel.value, email: f.email.value, messaggio: f.messaggio.value, sito: f.sito.value }, f, esito,
+      'Richiesta inviata: ti ricontattiamo al più presto per fissare l’appuntamento.');
   });
 })();
