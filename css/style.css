@@ -798,3 +798,11 @@ body{background:var(--xray-bg)}
 @media (max-width:900px){
   .is-scroll .pila picture.pila__foto img{inset:auto;left:var(--fx,0px);top:var(--fy,0px);width:var(--fw,100%);height:var(--fh,100%);max-width:none;object-fit:fill}
 }
+
+/* telefono: la radiografia ora parte sempre dal bordo alto (--y0 = 0): niente sfumature in cima,
+   altrimenti resta una strisciolina di foto che la linea non trasforma */
+@media (max-width:900px){
+  .is-scroll .pila img.pila__xray{-webkit-mask-image:none;mask-image:none}
+  .is-scroll .pila__foto{-webkit-mask-image:linear-gradient(to bottom,transparent 0,transparent var(--linea),#000 var(--linea));
+                                mask-image:linear-gradient(to bottom,transparent 0,transparent var(--linea),#000 var(--linea))}
+}
