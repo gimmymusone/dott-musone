@@ -174,7 +174,7 @@
     /* telefono: etichetta sotto l'organo, si tocca per aprire la scheda; computer: a sinistra dell'organo, con la scheda già aperta di fianco */
     vzEt.style.left = (stato.mobile ? stato.cx : stato.cx - stato.span * .62) + 'px';
     /* telefono: l'etichetta sta in basso, appena sopra il selettore, mai sopra l'immagine dell'organo */
-    vzEt.style.top = stato.mobile ? 'calc(100% - 150px - (100lvh - 100svh))' : stato.cy + 'px';   /* lvh−svh: spazio della barra di Safari */
+    vzEt.style.top = stato.mobile ? 'calc(100% - 150px - (100lvh - 100dvh))' : stato.cy + 'px';   /* lvh−svh: spazio della barra di Safari */
     gsap.to(punti, { autoAlpha: 0, duration: .3, ease: 'none', overwrite: 'auto' });
     gsap.to(vz, { autoAlpha: 1, duration: .3, ease: 'none', overwrite: 'auto' });
     gsap.set(vzEt, { autoAlpha: 0 });

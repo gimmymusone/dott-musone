@@ -792,7 +792,7 @@ body{background:var(--xray-bg)}
   .is-scroll .pila::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
     background:linear-gradient(to bottom,rgba(22,27,65,0) 45%,rgba(22,27,65,.55) 68%,rgba(22,27,65,.92) 100%)}
   .is-scroll .scan{z-index:2}
-  .is-scroll .hero{z-index:3;bottom:calc(max(20px,env(safe-area-inset-bottom)) + (100lvh - 100svh))}
+  .is-scroll .hero{z-index:3;bottom:calc(max(20px,env(safe-area-inset-bottom)) + (100lvh - 100dvh))}
 }
 
 @media (max-width:900px){
@@ -809,6 +809,6 @@ body{background:var(--xray-bg)}
 
 /* telefono: lo stage è alto 100lvh, quindi tutto ciò che sta in fondo sale dello spazio della barra di Safari */
 @media (max-width:900px){
-  .vz__selettore{bottom:calc(max(24px,env(safe-area-inset-bottom)) + (100lvh - 100svh))}
-  .is-scroll .zona{bottom:calc(96px + (100lvh - 100svh));max-height:calc(100% - var(--barra-h) - 160px - (100lvh - 100svh))}
+  .vz__selettore{bottom:calc(max(24px,env(safe-area-inset-bottom)) + (100lvh - 100dvh))}
+  .is-scroll .zona{bottom:calc(96px + (100lvh - 100dvh));max-height:calc(100% - var(--barra-h) - 160px - (100lvh - 100dvh))}
 }
