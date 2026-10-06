@@ -263,11 +263,14 @@
   addEventListener('touchmove', e => { if(corrente && !e.target.closest('.zona')) e.preventDefault(); }, { passive: false });
   const ordine = zone.map(z => z.dataset.zona);
 
+  /* telefono: conta solo la larghezza (la barra di Safari che compare/sparisce cambia l'altezza e non deve rimontare la scena) */
+  const misura = () => innerWidth <= 900 ? String(innerWidth) : innerWidth + 'x' + Math.round(innerHeight / 100);
+
   function avvia(){
     smonta();
     if(!mm.matches) return;                  /* riduci movimento: resta la pagina statica */
     monta();
-    ultimaMisura = innerWidth + 'x' + Math.round(innerHeight / 100);
+    ultimaMisura = misura();
     ScrollTrigger.refresh();
   }
 
@@ -276,8 +279,7 @@
   addEventListener('resize', () => {
     clearTimeout(rt);
     rt = setTimeout(() => {
-      const m = innerWidth + 'x' + Math.round(innerHeight / 100);
-      if(m !== ultimaMisura) avvia();
+      if(misura() !== ultimaMisura) avvia();
     }, 200);
   });
   mm.addEventListener('change', avvia);

@@ -772,10 +772,25 @@ body{background:var(--xray-bg)}
 
 /* telefono: linea e taglio della foto partono dal bordo alto della radiografia (--y0), non dal bordo del riquadro */
 @media (max-width:900px){
+  /* --f: 0 a scansione ferma (foto intera, nessuna cucitura), 1 appena la linea parte */
   .is-scroll .pila__foto{clip-path:none;
+    --f:clamp(0, var(--scan), 1);
     --linea:calc(var(--y0,0px) + (100% - var(--y0,0px)) * var(--scan) / 100);
-    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(var(--y0,0px) - 14px),transparent calc(var(--y0,0px) + 18px),transparent var(--linea),#000 var(--linea));
-            mask-image:linear-gradient(to bottom,#000 0,#000 calc(var(--y0,0px) - 14px),transparent calc(var(--y0,0px) + 18px),transparent var(--linea),#000 var(--linea))}
+    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(var(--y0,0px) - 14px * var(--f)),transparent calc(var(--y0,0px) + 18px * var(--f)),transparent var(--linea),#000 var(--linea));
+            mask-image:linear-gradient(to bottom,#000 0,#000 calc(var(--y0,0px) - 14px * var(--f)),transparent calc(var(--y0,0px) + 18px * var(--f)),transparent var(--linea),#000 var(--linea))}
   .is-scroll .pila img.pila__xray{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 40px);mask-image:linear-gradient(to bottom,transparent 0,#000 40px)}
   .is-scroll .scan{top:calc(var(--y0,0px) + (100% - var(--y0,0px)) * var(--scan) / 100)}
+}
+
+/* ══ telefono: la hero riempie TUTTO lo schermo sotto la barra, a prescindere dalla barra del browser ══
+   stage alto quanto lo schermo più grande (lvh): con la barra di Safari visibile il fondo resta sotto la barra,
+   mai una fascia blu; il ritratto copre tutto il riquadro, testo sopra con una sfumatura (niente maschera verso il blu) */
+@media (max-width:900px){
+  .is-scroll .stage{height:100svh;height:100lvh}
+  .is-scroll .pila{left:0;right:0;top:var(--barra-h);bottom:0;width:auto;height:auto;aspect-ratio:auto;transform:none;
+    -webkit-mask-image:none;mask-image:none}
+  .is-scroll .pila::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(to bottom,rgba(22,27,65,0) 45%,rgba(22,27,65,.55) 68%,rgba(22,27,65,.92) 100%)}
+  .is-scroll .scan{z-index:2}
+  .is-scroll .hero{z-index:3;bottom:calc(max(20px,env(safe-area-inset-bottom)) + (100lvh - 100svh))}
 }
