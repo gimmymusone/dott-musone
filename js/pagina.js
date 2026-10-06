@@ -167,6 +167,16 @@
     addEventListener('keydown', e => { if(e.key === 'Escape') chiudi(); });
     document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', chiudi));
   }
+  /* logo: sempre in cima, istantaneo (da qualunque punto, anche con una zona dell'X-ray aperta) */
+  const logo = $('.marchio');
+  logo && logo.addEventListener('click', e => {
+    e.preventDefault();
+    chiudi();
+    if(window.XRAY && window.XRAY.tornaSu) window.XRAY.tornaSu();
+    else scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    history.replaceState(null, '', location.pathname + location.search);
+    root.dataset.tema = 'scuro';
+  });
   document.querySelectorAll('[data-vai-aree]').forEach(a => a.addEventListener('click', e => {
     if(window.XRAY && window.XRAY.vaiAllaPrimaZona()) e.preventDefault();
   }));

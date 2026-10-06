@@ -762,3 +762,18 @@ html[data-tema="chiaro"] .marchio .m-scuro{display:block}
 .piede__priv a{color:#8d909a}
 @media (max-width:760px){.piede__riga{grid-template-columns:1fr;justify-items:center;text-align:center}.piede__info--sx,.piede__info--dx{justify-items:center;text-align:center}.piede__centro{order:-1}}
 .piede .piede__riga{width:100%;max-width:none;box-sizing:border-box}
+
+/* ══ hero (desktop): la radiografia è trasparente SOPRA il dottore, scoperta dalla linea ══
+   telefono: .pila__sov non esiste come riquadro (display:contents) e resta il ritaglio di prima */
+.pila__sov{display:contents}
+@media (min-width:901px){
+  .is-scroll .pila__foto{clip-path:none}
+  .is-scroll .pila__sov{display:block;position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;
+    clip-path:inset(0 0 calc((100 - var(--scan)) * 1%) 0)}
+  .is-scroll .pila img.pila__xray{display:block;position:absolute;inset:auto;left:var(--ox,0px);top:var(--oy,0px);width:var(--ow,100%);height:auto;max-width:none;object-fit:fill;mix-blend-mode:screen;opacity:.72}
+}
+
+/* ══ fasce blu: niente vuoto sopra il primo blocco, sfondi coerenti, stage sempre a tutta altezza ══ */
+#orienta{padding-top:0}
+body{background:var(--xray-bg)}
+.is-scroll .stage{height:100vh;height:100dvh}

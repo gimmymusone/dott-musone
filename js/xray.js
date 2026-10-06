@@ -45,7 +45,7 @@
     gsap.set([pila, scan, hero, didascalie, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')], { clearProps: ANIM });
     gsap.set(corpo, { clearProps: ANIM + ',width,height,transformOrigin,--fl' });
     dots.forEach(d => { d.style.left = d.style.top = ''; });
-    pila.style.removeProperty('--scan');
+    ['--scan', '--ox', '--oy', '--ow'].forEach(p => pila.style.removeProperty(p));
     root.classList.remove('is-scroll', 'zona-aperta');
     corrente = null; scheda = false; stato = null; fermo = false;
     elenco.dataset.aperto = 'false';
@@ -73,6 +73,9 @@
     }
     const H = W * RAPP;
     const partenza = { x: x0, y: y0, scale: 1 };
+    /* desktop: la radiografia sovrapposta alla foto (dentro .pila) ha la stessa inquadratura del corpo a scala 1 */
+    if(!mobile){ pila.style.setProperty('--ox', x0 + 'px'); pila.style.setProperty('--oy', y0 + 'px'); pila.style.setProperty('--ow', W + 'px'); }
+    else ['--ox', '--oy', '--ow'].forEach(p => pila.style.removeProperty(p));
 
     const cx = vw / 2;
     const cy = mobile ? barra + vh * .31 / 2 + 8 : vh * .52;      /* dove cade la zona aperta */
@@ -280,6 +283,12 @@
   window.XRAY = {
     vaiA(t){ if(tl) scrollTo(0, aTempo(t)); },    /* solo per le prove */
     apri: mostraZona, chiudi: tornaCorpo, apriScheda, chiudiScheda,
+    /* logo: torna in cima SUBITO (azzera zona/scheda aperte, nessuna animazione di scroll) */
+    tornaSu(){
+      if(stato && (corrente || scheda)) azzeraSubito();
+      scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      tl && ScrollTrigger.update();
+    },
     vaiAllaPrimaZona(){
       if(!tl) return false;
       scrollTo({ top: aTempo(5), behavior: 'smooth' });
