@@ -885,3 +885,9 @@ body{background:var(--xray-bg)}
 .anonima{max-width:1040px;margin-left:auto;margin-right:auto;border-radius:clamp(30px,4vw,56px);padding:clamp(22px,3.4vw,48px)}
 /* blocco blu dei contatti: foto dello studio in alto che sfuma nel blu dove c'è il testo */
 .contatto .card--aiuto{background:linear-gradient(to bottom,rgba(11,22,48,0) 30%,rgba(11,22,48,.75) 55%,var(--navy-900) 72%),url("../assets/contatto-studio.jpg") center top/cover no-repeat,var(--navy-900)}
+
+/* ══ transizione hero «negatoscopio»: niente linea, la foto si dissolve nello scheletro mentre il diafano si accende ══ */
+.diafano{display:none}
+.is-scroll .pila__foto{-webkit-mask-image:none!important;mask-image:none!important;clip-path:none!important;opacity:calc(1 - var(--scan) / 100)}
+.is-scroll .diafano{display:block;position:absolute;inset:0;z-index:2;pointer-events:none;opacity:var(--bagliore,0);mix-blend-mode:screen;
+  background:radial-gradient(ellipse 60% 70% at 30% 42%,rgba(235,245,255,.75),rgba(190,215,255,.3) 45%,rgba(160,190,255,0) 80%)}

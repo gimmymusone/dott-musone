@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════════════
    Hero → scheletro → corpo fermo con punti da cliccare.
-   Scorrendo: la linea di scansione scopre lo scheletro sotto la foto, la
+   Scorrendo: la foto si dissolve nello scheletro (effetto negatoscopio), la
    telecamera lo porta al centro mentre le braccia si sciolgono (tre pose
    in dissolvenza), poi il corpo RESTA FERMO e compaiono i punti. Un punto
    porta la telecamera sulla zona e apre la scheda (come Vibrant Wellness).
@@ -18,13 +18,13 @@
   const root = document.documentElement;
   const $ = (s, c=document) => c.querySelector(s);
   const xray = $('#xray'), stage = $('#stage'), pila = $('#pila'), corpo = $('#corpo'),
-        hero = $('#heroTxt'), didascalie = $('.didascalie'), punti = $('#punti'), scan = pila && $('.scan', pila),
+        hero = $('#heroTxt'), didascalie = $('.didascalie'), punti = $('#punti'),
         vz = $('#vz'), vzEt = $('#vzEtichetta'), vzEtT = $('#vzEtichettaTesto'), vzNome = $('#vzNome'), vzIco = $('#vzIco'), vzTxt = $('#vzTxt'), elenco = $('#elenco'),
         cA = corpo && $('.c-a', corpo);
   const organi = corpo ? [...corpo.querySelectorAll('.organo')] : [];
   const zone = [...document.querySelectorAll('#zone .zona')];
   const dots = [...document.querySelectorAll('#punti .punto')];
-  if(!window.gsap || !window.ScrollTrigger || !xray || !stage || !pila || !corpo || !hero || !scan || !punti || !vz || !vzEt || !vzEtT || !vzNome || !vzIco || !vzTxt || !cA || !elenco || !zone.length) return;
+  if(!window.gsap || !window.ScrollTrigger || !xray || !stage || !pila || !corpo || !hero || !punti || !vz || !vzEt || !vzEtT || !vzNome || !vzIco || !vzTxt || !cA || !elenco || !zone.length) return;
 
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
@@ -44,10 +44,10 @@
     if(tl){ tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); tl = null; }
     gsap.killTweensOf([corpo, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')]);
     /* solo le proprietà animate: 'all' cancellerebbe gli stili in linea che servono al fallback statico */
-    gsap.set([pila, scan, hero, didascalie, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')], { clearProps: ANIM });
+    gsap.set([pila, hero, didascalie, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')], { clearProps: ANIM });
     gsap.set(corpo, { clearProps: ANIM + ',width,height,transformOrigin,--fl' });
     dots.forEach(d => { d.style.left = d.style.top = ''; });
-    ['--scan', '--ox', '--oy', '--ow', '--y0', '--fx', '--fy', '--fw', '--fh'].forEach(p => pila.style.removeProperty(p));
+    ['--scan', '--bagliore', '--ox', '--oy', '--ow', '--y0', '--fx', '--fy', '--fw', '--fh'].forEach(p => pila.style.removeProperty(p));
     root.classList.remove('is-scroll', 'zona-aperta');
     corrente = null; scheda = false; stato = null; fermo = false;
     elenco.dataset.aperto = 'false';
@@ -108,20 +108,25 @@
     gsap.set(zone, { autoAlpha: 0, ...(mobile ? { xPercent: 0, yPercent: 100 } : { xPercent: 100, yPercent: 0 }) });
     gsap.set(vz, { autoAlpha: 0 });
     gsap.set(corpo.querySelectorAll('.anello'), { opacity: 0, scale: .6 });
-    gsap.set([scan, punti], { autoAlpha: 0 });
-    pila.style.setProperty('--scan', 0);
+    gsap.set(punti, { autoAlpha: 0 });
+    pila.style.setProperty('--scan', 0); pila.style.setProperty('--bagliore', 0);
 
     tl = gsap.timeline({
       defaults: { ease: 'power2.inOut' },
       scrollTrigger: { trigger: xray, start: 'top top', end: 'bottom bottom', scrub: .5, invalidateOnRefresh: true, onUpdate: self => aggiornaFermo(self), onRefresh: self => aggiornaFermo(self) }
     });
 
-    /* 1) hero → scansione: la linea scopre lo scheletro sotto la foto */
+    /* 1) hero → radiografia: la foto si dissolve nello scheletro */
+    /* «negatoscopio»: niente linea; la foto si dissolve nello scheletro mentre il diafano si accende
+       (due brevi sfarfallii, poi una luce piena che cala) */
     tl.to([hero, didascalie], { autoAlpha: 0, y: mobile ? 20 : -24, duration: .25, ease: 'none' }, 0)
-      .to(scan, { autoAlpha: 1, duration: .1, ease: 'none' }, .05)
       .to(pila, { '--scan': 100, duration: 1.2, ease: 'none' }, 0)
-      .to(scan, { autoAlpha: 0, duration: .1, ease: 'none' }, 1.15)
       .to(pila, { autoAlpha: 0, duration: .6, ease: 'none' }, 1.3);
+    tl.eventCallback('onUpdate', () => {
+      const v = parseFloat(pila.style.getPropertyValue('--scan')) || 0;
+      const lampo = (v > 10 && v < 15) || (v > 26 && v < 30) ? .55 : 0;
+      pila.style.setProperty('--bagliore', Math.min(1, lampo + .45 * Math.max(0, 1 - Math.abs(v - 55) / 45)).toFixed(3));
+    });
     if(mobile) tl.to(corpo, { opacity: 1, duration: .6, ease: 'none' }, 1.3);
 
     /* 2) la telecamera scende lungo lo scheletro e lo porta al centro (nessuna posa che cambia):
