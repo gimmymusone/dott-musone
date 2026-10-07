@@ -904,7 +904,7 @@ body{background:var(--xray-bg)}
 }
 
 /* telefono: niente zoom col doppio tocco (il pizzico per ingrandire resta) */
-html,body{touch-action:manipulation}
+html,body{touch-action:pan-y;overflow-x:clip;overscroll-behavior-x:none}   /* telefono: niente zoom (doppio tocco o pizzico) né spostamenti laterali */
 /* nome e ruolo nella barra in alto (su telefono), non più sopra la foto */
 .barra__nome{display:none}
 @media (max-width:900px){
