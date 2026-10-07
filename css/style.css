@@ -888,8 +888,17 @@ body{background:var(--xray-bg)}
 
 /* ══ transizione hero «negatoscopio»: niente linea, la foto si dissolve nello scheletro mentre il diafano si accende ══ */
 .diafano{display:none}
-.is-scroll .pila__foto{-webkit-mask-image:none!important;mask-image:none!important;clip-path:none!important;opacity:calc(1 - var(--scan) / 100)}
-.is-scroll .diafano{display:block;position:absolute;inset:0;z-index:2;pointer-events:none;opacity:var(--bagliore,0);mix-blend-mode:screen;
+.is-scroll .pila__foto{-webkit-mask-image:none!important;mask-image:none!important;clip-path:none!important;will-change:opacity}
+.is-scroll .diafano{display:block;position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;will-change:opacity;
   background:radial-gradient(ellipse 60% 70% at 30% 42%,rgba(235,245,255,.75),rgba(190,215,255,.3) 45%,rgba(160,190,255,0) 80%)}
 /* «Home» nell'isola: su telefono c'è già il logo */
 @media (max-width:900px){.menu .menu__home{display:none}}
+
+/* ══ telefono più scorrevole: niente sfocature dal vivo né maschere animate sopra la scena che si muove ══ */
+@media (max-width:900px){
+  .hamburger,.vz__selettore,.punto span,.is-scroll .elenco,.barra__ask{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .hamburger{background:rgba(226,232,244,.92)!important}
+  .is-scroll .corpo{-webkit-mask-image:none;mask-image:none}
+  .is-scroll .pila,.is-scroll .corpo,.is-scroll .diafano{transform:translateZ(0)}
+  .is-scroll .corpo{will-change:transform,opacity}
+}

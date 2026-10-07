@@ -44,7 +44,7 @@
     if(tl){ tl.scrollTrigger && tl.scrollTrigger.kill(); tl.kill(); tl = null; }
     gsap.killTweensOf([corpo, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')]);
     /* solo le proprietà animate: 'all' cancellerebbe gli stili in linea che servono al fallback statico */
-    gsap.set([pila, hero, didascalie, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')], { clearProps: ANIM });
+    gsap.set([pila, $('.pila__foto', pila), $('.diafano', pila), hero, didascalie, punti, vz, vzEt, cA, ...organi, ...zone, ...corpo.querySelectorAll('.anello')], { clearProps: ANIM });
     gsap.set(corpo, { clearProps: ANIM + ',width,height,transformOrigin,--fl' });
     dots.forEach(d => { d.style.left = d.style.top = ''; });
     ['--scan', '--bagliore', '--ox', '--oy', '--ow', '--y0', '--fx', '--fy', '--fw', '--fh'].forEach(p => pila.style.removeProperty(p));
@@ -118,21 +118,21 @@
 
     /* 1) hero → radiografia: la foto si dissolve nello scheletro */
     /* «negatoscopio»: niente linea; la foto si dissolve nello scheletro mentre il diafano si accende
-       (due brevi sfarfallii, poi una luce piena che cala) */
+       (due brevi sfarfallii, poi una luce piena che cala). Solo opacità: animazioni sul compositore, fluide anche su telefono */
+    const foto = $('.pila__foto', pila), diaf = $('.diafano', pila);
     tl.to([hero, didascalie], { autoAlpha: 0, y: mobile ? 20 : -24, duration: .25, ease: 'none' }, 0)
-      .to(pila, { '--scan': 100, duration: 1.2, ease: 'none' }, 0)
+      .to(foto, { opacity: 0, duration: 1.2, ease: 'none' }, 0)
+      .to(diaf, { opacity: .55, duration: .02, ease: 'none' }, .12).to(diaf, { opacity: .05, duration: .04, ease: 'none' }, .15)
+      .to(diaf, { opacity: .6, duration: .02, ease: 'none' }, .31).to(diaf, { opacity: .12, duration: .04, ease: 'none' }, .34)
+      .to(diaf, { opacity: .45, duration: .3, ease: 'sine.inOut' }, .4).to(diaf, { opacity: 0, duration: .5, ease: 'sine.in' }, .7)
       .to(pila, { autoAlpha: 0, duration: .6, ease: 'none' }, 1.3);
-    tl.eventCallback('onUpdate', () => {
-      const v = parseFloat(pila.style.getPropertyValue('--scan')) || 0;
-      const lampo = (v > 10 && v < 15) || (v > 26 && v < 30) ? .55 : 0;
-      pila.style.setProperty('--bagliore', Math.min(1, lampo + .45 * Math.max(0, 1 - Math.abs(v - 55) / 45)).toFixed(3));
-    });
     if(mobile) tl.to(corpo, { opacity: 1, duration: .6, ease: 'none' }, 1.3);
 
     /* 2) la telecamera scende lungo lo scheletro e lo porta al centro (nessuna posa che cambia):
           dal petto di Michele fino al tratto reni → coscia */
     tl.to(corpo, { ...intero, duration: 2.6 }, 1.5)
-      .to(corpo, { '--fl': 9, duration: 2.6, ease: 'none' }, 1.5);
+      ;
+    if(!mobile) tl.to(corpo, { '--fl': 9, duration: 2.6, ease: 'none' }, 1.5);
 
     /* 3) il corpo si ferma: compaiono i punti; poi una sosta (lo scroll resta fermo qui) */
     tl.to({}, { duration: mobile ? .7 : 3 }, 4.2);   /* sosta: lo scroll resta fermo su questo quadro (telefono: breve, si scende con un gesto) */
