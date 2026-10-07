@@ -891,3 +891,5 @@ body{background:var(--xray-bg)}
 .is-scroll .pila__foto{-webkit-mask-image:none!important;mask-image:none!important;clip-path:none!important;opacity:calc(1 - var(--scan) / 100)}
 .is-scroll .diafano{display:block;position:absolute;inset:0;z-index:2;pointer-events:none;opacity:var(--bagliore,0);mix-blend-mode:screen;
   background:radial-gradient(ellipse 60% 70% at 30% 42%,rgba(235,245,255,.75),rgba(190,215,255,.3) 45%,rgba(160,190,255,0) 80%)}
+/* «Home» nell'isola: su telefono c'è già il logo */
+@media (max-width:900px){.menu .menu__home{display:none}}
