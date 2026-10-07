@@ -916,3 +916,20 @@ html,body{touch-action:pan-y;overflow-x:clip;overscroll-behavior-x:none}   /* te
   html.menu-aperto .barra__nome{visibility:hidden}
   .is-scroll .hero .hero__ruolo,.hero__ruolo{display:none}
 }
+
+/* ══ telefono: «Esplora le aree» è un vero pulsante a pillola; aperto, l'elenco sta in una card sopra ══ */
+@media (max-width:900px){
+  .is-scroll .elenco{left:50%;right:auto;bottom:calc(max(22px,env(safe-area-inset-bottom)) + (100lvh - 100dvh));transform:translateX(-50%);width:min(420px,calc(100vw - 32px));
+    display:flex;flex-direction:column-reverse;align-items:center;gap:10px;padding:0;background:none!important;border:0!important;border-radius:0;box-shadow:none!important}
+  .is-scroll .elenco .elenco__testa{width:auto;min-height:52px;padding:0 10px 0 24px;gap:12px;justify-content:center;border-radius:999px;background:var(--blue-500);color:#fff;
+    font:700 16px var(--f-titoli);letter-spacing:0;text-transform:none;box-shadow:0 10px 30px rgba(8,12,40,.45);pointer-events:auto}
+  .font-pp .is-scroll .elenco .elenco__testa{font-weight:700!important}
+  .is-scroll .elenco .elenco__testa i{width:34px;height:34px;background:rgba(255,255,255,.22)}
+  .is-scroll .elenco .elenco__testa i::after{border-color:#fff}
+  .is-scroll .elenco[data-aperto="true"] .elenco__lista{width:100%;padding:12px;border-radius:28px;background:rgba(255,255,255,.97);box-shadow:0 18px 50px rgba(8,12,40,.45)}
+
+  /* nome nella barra: più in basso, centrato, stesso carattere del resto, leggibile anche sopra la radiografia chiara */
+  .barra__nome{align-self:center;justify-items:center;margin-top:6px;padding:7px 16px;border-radius:18px;background:rgba(11,22,48,.72);gap:1px}
+  .barra__nome b{font:700 15.5px/1.15 var(--f-titoli)}
+  .barra__nome span{font:400 13px/1.2 var(--f-titoli);letter-spacing:0;text-transform:none;color:#D6E2F5}
+}
