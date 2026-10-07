@@ -902,3 +902,17 @@ body{background:var(--xray-bg)}
   .is-scroll .pila,.is-scroll .corpo,.is-scroll .diafano{transform:translateZ(0)}
   .is-scroll .corpo{will-change:transform,opacity}
 }
+
+/* telefono: niente zoom col doppio tocco (il pizzico per ingrandire resta) */
+html,body{touch-action:manipulation}
+/* nome e ruolo nella barra in alto (su telefono), non più sopra la foto */
+.barra__nome{display:none}
+@media (max-width:900px){
+  .barra__nome{display:grid;flex:1;min-width:0;justify-items:center;text-align:center;gap:2px;padding:0 8px;line-height:1.15;color:#fff;pointer-events:none}
+  .barra__nome b{font:700 16px/1.15 var(--f-titoli);letter-spacing:-.01em;white-space:nowrap}
+  .font-pp .barra__nome b{font-weight:700!important}
+  .barra__nome span{font:400 11.5px var(--f-titoli);letter-spacing:.2em;text-transform:uppercase;color:#AFC4DD}
+  html[data-tema="chiaro"] .barra__nome{visibility:hidden}   /* sui blocchi chiari la barra è trasparente: il nome si sovrapporrebbe ai testi */
+  html.menu-aperto .barra__nome{visibility:hidden}
+  .is-scroll .hero .hero__ruolo,.hero__ruolo{display:none}
+}
