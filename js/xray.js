@@ -89,7 +89,9 @@
     const H = W * RAPP;
     const partenza = { x: x0, y: y0, scale: 1 };
     const cx = vw / 2;
-    const cy = mobile ? barra + vh * .31 / 2 + 8 : vh * .52;      /* dove cade la zona aperta */
+    /* dove cade la zona aperta. Telefono: al centro dello spazio libero tra la barra e il selettore in fondo
+       (altezza visibile, non quella massima con la barra di Safari nascosta) */
+    const cy = mobile ? (barra + Math.min(vh, innerHeight) - 130) / 2 : vh * .52;
     const span = mobile ? vw * .7 : vh * .46;                    /* quanto spazio occupa */
     const vista = (tx, ty, s, px = cx, py = cy) => ({ x: px - tx * W * s, y: py - ty * H * s, scale: s });
     /* inquadratura del «corpo fermo»: solo da sotto il petto a metà coscia (reni → genitali), non tutto lo scheletro */
@@ -164,6 +166,9 @@
   function mostraZona(n){
     if(!tl || !stato || scheda || n === corrente) return;
     const z = zonaDi(n); if(!z) return;
+    /* se lo scroll è andato oltre la sosta, la scena sta già uscendo dallo schermo: la si riporta ferma
+       (altrimenti l'organo non è centrato e la freccia «indietro» finisce sotto il logo) */
+    if(stato.mobile || Math.abs(stage.getBoundingClientRect().top) > 1) scrollTo({ top: aTempo(Math.min(T_FERMO + .2, tl.duration() - .05)), left: 0, behavior: 'instant' });
     const prima = corrente;
     corrente = n;
     root.classList.add('zona-aperta');

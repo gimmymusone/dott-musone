@@ -933,3 +933,4 @@ html,body{touch-action:pan-y;overflow-x:clip;overscroll-behavior-x:none}   /* te
   .barra__nome b{font:700 15.5px/1.15 var(--f-titoli)}
   .barra__nome span{font:400 13px/1.2 var(--f-titoli);letter-spacing:0;text-transform:none;color:#D6E2F5}
 }
+@media (max-width:900px){.vz__indietro{top:calc(var(--barra-h) + 18px)!important}}
